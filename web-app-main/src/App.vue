@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <AppBar />
+    <NavDrawer />
     <v-main>
       <HelloWorld />
     </v-main>
