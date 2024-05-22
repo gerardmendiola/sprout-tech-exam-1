@@ -14,7 +14,7 @@
                         <v-list-item
                             link
                             class="text-subtitle-2 my-1"
-                            active-color="green"
+                            color="green"
                             to="/">
                             <v-icon class="mr-2">mdi-calendar-clock-outline</v-icon>
                             Attendance Logs
@@ -22,7 +22,7 @@
                         <v-list-item
                             link
                             class="text-subtitle-2 my-1"
-                            active-color="green"
+                            color="green"
                             to="/export">
                             <v-icon class="mr-2">mdi-layers-triple-outline</v-icon>
                             Exported Files
@@ -38,17 +38,20 @@
             <v-row class="pa-4" no-gutters>
                 <v-btn
                     block
-                    class="text-capitalize mb-4"
-                    color="green-darken-2">
+                    class="text-capitalize mb-2"
+                    color="green-darken-2"
+                    :disabled="store.filter.company && store.filter.department && store.filter.location && store.filter.employee ? false : true">
                     <v-icon class="mr-2">mdi-magnify</v-icon>
                     Search
                 </v-btn>
                 
                 
+                
                 <v-btn
                     block
                     variant="outlined"
-                    class="text-capitalize">
+                    class="text-capitalize"
+                    disabled>
                     <v-icon class="mr-2">mdi-tray-arrow-down</v-icon>
                     Export
                 </v-btn>
@@ -104,18 +107,23 @@
                     <v-col cols="12">
                         <v-select
                             v-model="store.filter.company"
-                            :items="companyList"
+                            :items="nestedArray"
+                            item-title="companyName"
+                            item-value="companyName"
                             label="Company"
                             placeholder="Select Company"
                             density="compact"
                             hide-details
                             variant="outlined"
+                            @update:model-value="onSelectCompany()"
                         ></v-select>
                     </v-col>
                     <v-col cols="12">
                         <v-select
                             v-model="store.filter.department"
-                            :items="[]"
+                            :items="nestedArray.find(find => find.companyName == store.filter.company)?.departments || []"
+                            item-title="name"
+                            item-value="name"
                             label="Department"
                             density="compact"
                             hide-details
@@ -125,21 +133,23 @@
                     <v-col cols="12">
                         <v-select
                             v-model="store.filter.location"
-                            :items="[]"
+                            :items="nestedArray.find(find => find.companyName == store.filter.company)?.departments.find(find => find.name == store.filter.department)?.locations || []"
                             label="Location"
                             density="compact"
                             hide-details
                             variant="outlined"
+                            :disabled="!nestedArray.find(find => find.companyName == store.filter.company)?.departments.find(find => find.name == store.filter.department)?.locations.length"
                         ></v-select>
                     </v-col>
                     <v-col cols="12">
                         <v-select
                             v-model="store.filter.employee"
-                            :items="[]"
+                            :items="nestedArray.find(find => find.companyName == store.filter.company)?.departments.find(find => find.name == store.filter.department)?.employees || []"
                             label="Employee"
                             density="compact"
                             hide-details
                             variant="outlined"
+                            :disabled="!nestedArray.find(find => find.companyName == store.filter.company)?.departments.find(find => find.name == store.filter.department)?.employees.length"
                         ></v-select>
                     </v-col>
                 </v-row>
@@ -171,5 +181,48 @@ import { store } from '../store'
 const drawer = true
 const showFilters = ref(false)
 
-const companyList = ['Mcdollibee', 'Mang Inasar', 'Chowqueen']
+const nestedArray = [
+    {
+        companyName: 'Mcdollibee',
+        departments: [
+            {
+                name: 'Mcdo Dept 1',
+                locations: ['Luzon', 'Visayas', 'Mindanao'],
+                employees: ['Eve', 'Adam']
+            },
+            {
+                name: 'Mcdo Dept 2',
+                locations: [],
+                employees: []
+            }
+        ]
+    },
+    {
+        companyName: 'Mang Inasar',
+        departments: [
+            {
+                name: 'Inasar Dept 1',
+                locations: ['NCR', 'Region 99'],
+                employees: []
+            }
+        ]
+    },
+    {
+        companyName: 'Chowqueen',
+        departments: [
+            {
+                name: 'Chow Dept 1',
+                locations: [],
+                employees: ['Doggie', 'Cathy']
+            }
+        ]
+    },
+]
+
+async function onSelectCompany() {
+    store.filter.department = ''
+    store.filter.location = ''
+    store.filter.employee = ''
+}
+
 </script>
