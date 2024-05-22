@@ -3,7 +3,8 @@
     <AppBar />
     <NavDrawer />
     <v-main>
-      <AttendancePage />
+      <!-- <AttendancePage /> -->
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>

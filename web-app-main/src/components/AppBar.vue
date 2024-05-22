@@ -1,7 +1,7 @@
 <template>
     <v-app-bar density="comfortable" elevation="0" height="76" color="#333333">
         <template #prepend>
-            <v-img src="/public/logo.png" height="38" width="auto"></v-img>
+            <v-img src="/logo.png" height="38" width="auto"></v-img>
         </template>
         
         <template #default>

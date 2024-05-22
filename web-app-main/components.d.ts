@@ -9,8 +9,12 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppBar: typeof import('./src/components/AppBar.vue')['default']
     AttendancePage: typeof import('./src/components/AttendancePage.vue')['default']
+    copy: typeof import('./src/components/AttendancePage copy.vue')['default']
+    ExportedFilePage: typeof import('./src/components/ExportedFilePage.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     NavDrawer: typeof import('./src/components/NavDrawer.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     Toolbar: typeof import('./src/components/Toolbar.vue')['default']
   }
 }

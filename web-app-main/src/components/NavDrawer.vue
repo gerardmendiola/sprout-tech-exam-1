@@ -14,15 +14,18 @@
                         <v-list-item
                             link
                             class="text-subtitle-2 my-1"
-                            style="background-color: #E6FFEE;">
-                            <v-icon class="mr-2" color="success">mdi-calendar-clock-outline</v-icon>
+                            active-color="green"
+                            to="/">
+                            <v-icon class="mr-2">mdi-calendar-clock-outline</v-icon>
                             Attendance Logs
                         </v-list-item>
                         <v-list-item
                             link
-                            class="text-subtitle-2 my-1">
-                            <v-icon class="mr-2" color="grey">mdi-layers-triple-outline</v-icon>
-                            Batch Add
+                            class="text-subtitle-2 my-1"
+                            active-color="green"
+                            to="/export">
+                            <v-icon class="mr-2">mdi-layers-triple-outline</v-icon>
+                            Exported Files
                         </v-list-item>
                     </v-list>
                 </v-col>

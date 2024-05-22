@@ -6,14 +6,33 @@
 
 // Plugins
 import { registerPlugins } from '@/plugins'
+import { createRouter, createWebHistory } from 'vue-router'
 
 // Components
 import App from './App.vue'
+import AttendancePage from './pages/attendance/Index.vue'
+import ExportedPage from './pages/exported/Index.vue'
 
 // Composables
 import { createApp } from 'vue'
 
 const app = createApp(App)
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+        {
+            path: '/',
+            component: AttendancePage
+        },
+        {
+            path: '/export',
+            component: ExportedPage
+        }
+    ]
+})
+
+app.use(router)
 
 registerPlugins(app)
 
