@@ -121,5 +121,53 @@ export const store = reactive({
     department: "",
     location: "",
     employee: ""
-  }
+  },
+
+  
+  announcementItems: [
+    {
+      title: '[FOR YOUR ACTION]',
+      message: 'In line with the inc...',
+      sentBy: 'Roe, Ken',
+      sentThrough: '',
+      dateCreated: '02/17/2022',
+      startDate: '02/18/2022',
+      startTime: '9:30 AM',
+      endDate: '02/22/2022',
+      endTime: '7:30 PM'
+    },
+    {
+      title: 'Annual Physical E...',
+      message: 'In compliance with...',
+      sentBy: 'Roe, Ken',
+      sentThrough: '',
+      dateCreated: '02/17/2022',
+      startDate: '02/18/2022',
+      startTime: '9:30 AM',
+      endDate: '02/22/2022',
+      endTime: '7:30 PM'
+    },
+    {
+      title: 'Mid-Autumn Festi...',
+      message: 'We wish everyone a...',
+      sentBy: 'Doe, Jane',
+      sentThrough: '',
+      dateCreated: '02/17/2022',
+      startDate: '02/18/2022',
+      startTime: '9:30 AM',
+      endDate: '02/22/2022',
+      endTime: '7:30 PM'
+    },
+    {
+      title: '50th General Assembly',
+      message: 'Expelliarmus! Chec...',
+      sentBy: 'Doe, Jane',
+      sentThrough: '',
+      dateCreated: '02/17/2022',
+      startDate: '02/18/2022',
+      startTime: '9:30 AM',
+      endDate: '02/22/2022',
+      endTime: '7:30 PM'
+    }
+  ],
 })

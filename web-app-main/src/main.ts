@@ -12,6 +12,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import AttendancePage from './pages/attendance/Index.vue'
 import ExportedPage from './pages/exported/Index.vue'
+import AnnouncementPage from './pages/announcement/Index.vue'
 
 // Composables
 import { createApp } from 'vue'
@@ -28,6 +29,10 @@ const router = createRouter({
         {
             path: '/export',
             component: ExportedPage
+        },
+        {
+            path: '/announcement',
+            component: AnnouncementPage
         }
     ]
 })
