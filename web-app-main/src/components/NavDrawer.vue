@@ -31,7 +31,8 @@
         </template>
         
         <template #append>
-            <v-row class="px-4 pb-4" no-gutters>
+            <v-divider></v-divider>
+            <v-row class="pa-4" no-gutters>
                 <v-btn
                     block
                     class="text-capitalize mb-4"
@@ -50,9 +51,128 @@
                 </v-btn>
             </v-row>
         </template>
+
+        <v-row class="pa-4">
+            <v-col cols="12" class="grey-text text-subtitle-2 pb-1">
+                DATE RANGE
+            </v-col>
+            <v-col cols="12">
+                <v-text-field
+                    v-model="filter.from"
+                    label="Date From"
+                    density="compact"
+                    hide-details
+                    type="date"
+                    variant="outlined"
+                ></v-text-field>
+            </v-col>
+            <v-col cols="12">
+                <v-text-field
+                    v-model="filter.to"
+                    label="Date To"
+                    density="compact"
+                    hide-details
+                    type="date"
+                    variant="outlined"
+                ></v-text-field>
+            </v-col>
+            
+            <v-col cols="12">
+                <v-row no-gutters>
+                    <v-col cols="6" class="grey-text text-subtitle-2 pb-1">
+                        FILTERS
+                    </v-col>
+                    <v-col cols="6" align="end">
+                        <v-btn
+                            size="small"
+                            color="light-blue-darken-2"
+                            variant="text"
+                            class="text-capitalize font-weight-bold"
+                            @click="showFilters = !showFilters">
+                            {{
+                                !showFilters ? 'Show All' : 'Hide All'
+                            }}
+                        </v-btn>
+                    </v-col>
+                </v-row>
+            </v-col>
+            <v-col cols="12" v-if="showFilters">
+                <v-row>
+                    <v-col cols="12">
+                        <v-select
+                            v-model="filter.company"
+                            :items="[]"
+                            label="Company"
+                            placeholder="Select Company"
+                            density="compact"
+                            hide-details
+                            variant="outlined"
+                        ></v-select>
+                    </v-col>
+                    <v-col cols="12">
+                        <v-select
+                            v-model="filter.department"
+                            :items="[]"
+                            label="Department"
+                            density="compact"
+                            hide-details
+                            variant="outlined"
+                        ></v-select>
+                    </v-col>
+                    <v-col cols="12">
+                        <v-select
+                            v-model="filter.location"
+                            :items="[]"
+                            label="Location"
+                            density="compact"
+                            hide-details
+                            variant="outlined"
+                        ></v-select>
+                    </v-col>
+                    <v-col cols="12">
+                        <v-select
+                            v-model="filter.employee"
+                            :items="[]"
+                            label="Employee"
+                            density="compact"
+                            hide-details
+                            variant="outlined"
+                        ></v-select>
+                    </v-col>
+                </v-row>
+            </v-col>
+            <v-col cols="12" v-else>
+                <v-row no-gutters>
+                    <v-col cols="12" class="pb-1">
+                        <v-icon class="mr-2" color="grey">mdi-domain</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ filter.company ? filter.company : 'All' }} </span>
+                    </v-col>
+                    <v-col cols="12" class="pb-1">
+                        <v-icon class="mr-2" color="grey">mdi-account-group-outline</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ filter.department ? filter.department : 'All' }} </span>
+                    </v-col>
+                    <v-col cols="12" class="pb-1">
+                        <v-icon class="mr-2" color="grey">mdi-map-marker-outline</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ filter.location ? filter.location : 'All' }} </span>
+                    </v-col>
+                    <v-col cols="12">
+                        <v-icon class="mr-2" color="grey">mdi-account-outline</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ filter.employee ? filter.employee : 'All' }} </span>
+                    </v-col>
+                </v-row>
+            </v-col>
+        </v-row>
     </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 const drawer = true
+
+const showFilters = ref(false)
+const filter = ref({
+    from: "",
+    to: "",
+    company: "Mcdollibee",
+    department: "",
+    location: "",
+    employee: ""
+})
 </script>
