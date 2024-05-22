@@ -9,8 +9,7 @@
         <v-card-text>
           <v-data-table
             :page="currentPage"
-            :headers="headers"
-            :items="store.attendanceItems"
+            :items="[]"
             :items-per-page="itemsPerPageData">
 
             <template v-slot:item="{ item }">
@@ -49,7 +48,7 @@
               </tr>
             </template>
 
-            <template v-slot:bottom="{ page, itemsPerPage, pageCount }">
+            <template v-slot:bottom="{ page, pageCount }">
               <v-row>
                 <v-col cols="12">
                   <v-divider></v-divider>
@@ -95,6 +94,7 @@
 										hide-details
                     class="overrideCurrentPage"
                     variant="outlined"
+                    :disabled="pageCount == 1"
 									></v-text-field>
 
                   <span style="position: relative; left: 70px; top: 5px;">of {{ pageCount }}</span>
@@ -122,7 +122,26 @@
                 </v-col>
                 
                 <v-col cols="4" align="end">
-                  Showing {{ page }} - {{ itemsPerPage }} of {{ store.attendanceItems.length }}
+                  Showing 0 of 0
+                </v-col>
+              </v-row>
+            </template>
+
+            <template #no-data>
+              <v-row no-gutters justify="center" class="pa-16">
+                <v-col cols="12">
+                  <v-row no-gutters justify="center">
+                    <v-icon size="150" color="grey">mdi-note-alert-outline</v-icon>
+                  </v-row>
+                </v-col>
+
+                <v-col cols="12">
+                    <div class="text-h5 font-weight-bold mb-1">
+                      There are no exported items to show on your end.
+                    </div>
+                    <div class="text-body-1">
+                      Search for the logs & click <span class="text-green">Export</span> to generate the file here.
+                    </div>
                 </v-col>
               </v-row>
             </template>

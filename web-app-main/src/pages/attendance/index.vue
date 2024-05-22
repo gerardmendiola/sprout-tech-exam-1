@@ -92,11 +92,12 @@
                     
                     <v-text-field
                       v-model="currentPage"
-                                          density="compact"
-                                          hide-details
+                      density="compact"
+                      hide-details
                       class="overrideCurrentPage"
                       variant="outlined"
-                                      ></v-text-field>
+                      :disabled="pageCount == 1"
+                    ></v-text-field>
   
                     <span style="position: relative; left: 70px; top: 5px;">of {{ pageCount }}</span>
   
