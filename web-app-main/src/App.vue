@@ -3,7 +3,7 @@
     <AppBar />
     <NavDrawer />
     <v-main>
-      <HelloWorld />
+      <AttendancePage />
     </v-main>
   </v-app>
 </template>

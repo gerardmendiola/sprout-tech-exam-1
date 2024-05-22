@@ -58,7 +58,7 @@
             </v-col>
             <v-col cols="12">
                 <v-text-field
-                    v-model="filter.from"
+                    v-model="store.filter.from"
                     label="Date From"
                     density="compact"
                     hide-details
@@ -68,7 +68,7 @@
             </v-col>
             <v-col cols="12">
                 <v-text-field
-                    v-model="filter.to"
+                    v-model="store.filter.to"
                     label="Date To"
                     density="compact"
                     hide-details
@@ -100,8 +100,8 @@
                 <v-row>
                     <v-col cols="12">
                         <v-select
-                            v-model="filter.company"
-                            :items="[]"
+                            v-model="store.filter.company"
+                            :items="companyList"
                             label="Company"
                             placeholder="Select Company"
                             density="compact"
@@ -111,7 +111,7 @@
                     </v-col>
                     <v-col cols="12">
                         <v-select
-                            v-model="filter.department"
+                            v-model="store.filter.department"
                             :items="[]"
                             label="Department"
                             density="compact"
@@ -121,7 +121,7 @@
                     </v-col>
                     <v-col cols="12">
                         <v-select
-                            v-model="filter.location"
+                            v-model="store.filter.location"
                             :items="[]"
                             label="Location"
                             density="compact"
@@ -131,7 +131,7 @@
                     </v-col>
                     <v-col cols="12">
                         <v-select
-                            v-model="filter.employee"
+                            v-model="store.filter.employee"
                             :items="[]"
                             label="Employee"
                             density="compact"
@@ -144,16 +144,16 @@
             <v-col cols="12" v-else>
                 <v-row no-gutters>
                     <v-col cols="12" class="pb-1">
-                        <v-icon class="mr-2" color="grey">mdi-domain</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ filter.company ? filter.company : 'All' }} </span>
+                        <v-icon class="mr-2" color="grey">mdi-domain</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ store.filter.company ? store.filter.company : 'All' }} </span>
                     </v-col>
                     <v-col cols="12" class="pb-1">
-                        <v-icon class="mr-2" color="grey">mdi-account-group-outline</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ filter.department ? filter.department : 'All' }} </span>
+                        <v-icon class="mr-2" color="grey">mdi-account-group-outline</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ store.filter.department ? store.filter.department : 'All' }} </span>
                     </v-col>
                     <v-col cols="12" class="pb-1">
-                        <v-icon class="mr-2" color="grey">mdi-map-marker-outline</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ filter.location ? filter.location : 'All' }} </span>
+                        <v-icon class="mr-2" color="grey">mdi-map-marker-outline</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ store.filter.location ? store.filter.location : 'All' }} </span>
                     </v-col>
                     <v-col cols="12">
-                        <v-icon class="mr-2" color="grey">mdi-account-outline</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ filter.employee ? filter.employee : 'All' }} </span>
+                        <v-icon class="mr-2" color="grey">mdi-account-outline</v-icon> <span class="text-uppercase text-body-2 text-grey-darken-4"> {{ store.filter.employee ? store.filter.employee : 'All' }} </span>
                     </v-col>
                 </v-row>
             </v-col>
@@ -163,16 +163,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { store } from '../store'
 
 const drawer = true
-
 const showFilters = ref(false)
-const filter = ref({
-    from: "",
-    to: "",
-    company: "Mcdollibee",
-    department: "",
-    location: "",
-    employee: ""
-})
+
+const companyList = ['Mcdollibee', 'Mang Inasar', 'Chowqueen']
 </script>
